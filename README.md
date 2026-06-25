@@ -68,6 +68,16 @@ BIN="build/Modern Matrix.app/Contents/MacOS/MatrixRainHarness"
 #        --wireframe --no-bloom --no-fog --no-textured --no-waves --panning --warmup N
 ```
 
+## Building the Windows version (.scr)
+
+Most of the Windows port is already written: the simulation, settings model, and glyph
+encodings live in **portable C at [`core/mmcore.c`](core/mmcore.c)**. To build the
+screensaver, read **[`PORTING.md`](PORTING.md)** — a complete, self-contained blueprint
+(start at §0) — plus [`core/README.md`](core/README.md). You **link `core/mmcore.c`** for the
+rain itself and implement only the Windows-specific parts: a Direct3D 11 renderer, a
+DirectWrite glyph atlas, a Win32 config dialog, and the `.scr` host shell (in a `windows/`
+folder). Requires Visual Studio 2022 with the "Desktop development with C++" workload.
+
 ## Known limitations (macOS 26)
 
 These are **macOS platform limitations, not bugs in Modern Matrix** — they affect
